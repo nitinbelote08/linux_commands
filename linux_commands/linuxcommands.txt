@@ -1,0 +1,16 @@
+----------------------------------------------------------------------------
+Linux: Find Out How Many File Descriptors Are Being Used
+Step # 1 Find Out PID 
+[root@master 447301]# ps aux | grep jenkins
+nitin     447184  0.0  0.0   2472  1024 ?        Ss   09:24   0:03 /usr/bin/tini -- /usr/local/bin/jenkins.sh
+nitin     447301  1.8 21.2 5051300 1151684 ?     Sl   09:24   7:48 java -Duser.home=/var/jenkins_home -Djenkins.model.Jenkins.slaveAgentPort=50000 -Dhudson.lifecycle=hudson.lifecycle.ExitLifecycle -jar /usr/share/jenkins/jenkins.war
+
+Step # 2 List File Opened By a PID # 447301 -Use the lsof command or /proc/$PID/ file system to display open fds (file descriptors), run:
+
+ lsof -p 447301 OR  lsof -a -p 447301
+
+Step # Count All Open File Handles
+lsof -p 447301 |wc -l
+------------------------------------------------------------------------------
+
+
